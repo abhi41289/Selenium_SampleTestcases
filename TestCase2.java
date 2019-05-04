@@ -1,9 +1,12 @@
 
 /*This test case is to validate whether we are able to signup
-to  facebook */
+to  guru99 ecomm page */
+
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -13,33 +16,40 @@ public class TestCase2 {
 		// TODO Auto-generated method stub
 		WebDriver driver = new ChromeDriver();
 
-	    driver.get("https://www.facebook.com/");
+	    driver.get("http://live.guru99.com/");
 	    driver.manage().window().maximize();
+	    int randNum = (int) (Math.random() * 100);
+	    
+	    //Create a new account
+	    driver.findElement(By.xpath("//div[@class='footer']//a[contains(text(),'My Account')]")).click();
+	    driver.findElement(By.xpath("//span[contains(text(),'Create an Account')]")).click();
+	    
+	    //Register new member
+	    driver.findElement(By.id("firstname")).sendKeys("Test"+randNum);
+	    driver.findElement(By.id("middlename")).sendKeys("Test"+randNum);
+	    driver.findElement(By.id("lastname")).sendKeys("Test"+randNum);
+	    driver.findElement(By.id("email_address")).sendKeys("Test"+randNum+"@gmail.com");
+	    driver.findElement(By.id("password")).sendKeys("Test@123");
+	    driver.findElement(By.id("confirmation")).sendKeys("Test@123");
+	    
+	    driver.findElement(By.xpath("//span[contains(text(),'Register')]")).click();
 
-	    //text fields
-	    driver.findElement(By.id("u_0_j")).sendKeys("Abhishek");
-	    driver.findElement(By.name("lastname")).sendKeys("Raj");
-	    driver.findElement(By.name("reg_email__")).sendKeys("9100751649");
-	    driver.findElement(By.name("reg_passwd__")).sendKeys("Test@41289");
+	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	   
+	    //Testcase validation
+	    String actual_name= driver.findElement(By.xpath("//span[contains(text(),'Thank you for registering with Main Website Store.')] ")).getText();
+	    //System.out.println(actual_name);
+	    
+		
+		  if(actual_name.contains("Thank you for registering with Main Website Store."))
+		  
+			  
+		  { System.out.println("Test Pass"); } else
+		  
+		  { System.out.println("Text Failed"); }
+		 
 
-	    //static drop down
-	    Select s = new Select(driver.findElement(By.id("day")));
-	    Thread.sleep(1000);
-	    s.selectByVisibleText("4");
-
-	    Select s1 = new Select(driver.findElement(By.id("month")));
-	    Thread.sleep(1000);
-	    s1.selectByValue("12");
-
-	    Select s2 = new Select(driver.findElement(By.id("year")));
-	    Thread.sleep(1000);
-	    s2.selectByValue("1989");
-	    //radio button
-	    driver.findElement(By.xpath("//input[@value='2']")).click();//for selecting male
-
-	    driver.findElement(By.name("websubmit")).click();
-
-	    //driver.quit();
+	    driver.quit();
+	
 	}
-
 }

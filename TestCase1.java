@@ -1,5 +1,5 @@
 /*This test case is to validate whether or not we are able to navigate 
-to the facebook signup and login page*/
+to the Guru99 demo site */
 
 
 import org.openqa.selenium.WebDriver;
@@ -16,11 +16,11 @@ public class TestCase1 {
 			WebDriver driver = new ChromeDriver();
 			
 			//Goes to the specified URL
-			driver.get("http://www.facebook.com");
+			driver.get("http://live.guru99.com/");
 			System.out.println(driver.getTitle());
 			
 			String actualTitle=driver.getTitle();
-			String expectedTitle="Facebook – log in or sign up";
+			String expectedTitle="Home page";
 			
 		    
 			//Test Case Validation

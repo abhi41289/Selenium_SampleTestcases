@@ -1,5 +1,5 @@
 /*This test case is to validate whether we are able to login
-to the facebook account*/
+to the guru99 account*/
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,25 +10,33 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestCase3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//      Create a new instance of the Firefox driver
-        WebDriver driver = new ChromeDriver();
-//      Navigating to the intended url
-        driver.get("https://www.facebook.com/");
-//      Maximizing the window
-        driver.manage().window().maximize();
-//        Waiting for browser to load page
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        Finding the username textbox element and entering the repective username
-        driver.findElement(By.name("email")).sendKeys("username");
-//        Finding the password textbox element and entering the repective password
-        driver.findElement(By.name("pass")).sendKeys("password");
-//        Waiting for browser to load page
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        Clicking Log in button
-        driver.findElement(By.id("u_0_3")).click();
-//        closing the driver instance
-        driver.close();
+	    WebDriver driver = new ChromeDriver();
+
+	    driver.get("http://live.guru99.com/");
+	    driver.manage().window().maximize();
+	    
+	    //login to the account
+	    driver.findElement(By.xpath("//div[@class='footer']//a[contains(text(),'My Account')]")).click();
+	    
+	    //entering credentials
+	    driver.findElement(By.xpath("//input[@id='email']")).sendKeys("pabhishekraj@gmail.com");
+	    driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("Anurag@41289");
+	    driver.findElement(By.xpath("//button[@id='send2']")).click();
+	    
+	    
+	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	    
+	    String actual_name= driver.findElement(By.xpath("//h1[contains(text(),'My Dashboard')] ")).getText();
+	    //System.out.println(actual_name);
+		
+		  if(actual_name.contains("MY DASHBOARD"))
+		  
+		  { System.out.println("Test Pass"); } else
+		  
+		  { System.out.println("Text Failed"); }
+		 
+
+	    driver.close();
 
 }
 }
