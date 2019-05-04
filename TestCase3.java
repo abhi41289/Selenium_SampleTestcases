@@ -19,14 +19,14 @@ public class TestCase3 {
 	    driver.findElement(By.xpath("//div[@class='footer']//a[contains(text(),'My Account')]")).click();
 	    
 	    //entering credentials
-	    driver.findElement(By.xpath("//input[@id='email']")).sendKeys("pabhishekraj@gmail.com");
-	    driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("Anurag@41289");
-	    driver.findElement(By.xpath("//button[@id='send2']")).click();
+	    driver.findElement(By.xpath("//*[@id='email']")).sendKeys("pabhishekraj@gmail.com");
+	    driver.findElement(By.xpath("//*[@id='pass']")).sendKeys("Anurag@41289");
+	    driver.findElement(By.xpath("//*[@id='send2']")).click();
 	    
 	    
 	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    
-	    String actual_name= driver.findElement(By.xpath("//h1[contains(text(),'My Dashboard')] ")).getText();
+	    String actual_name= driver.findElement(By.xpath("//*[@class=\"dashboard\"]")).getText();
 	    //System.out.println(actual_name);
 		
 		  if(actual_name.contains("MY DASHBOARD"))
@@ -36,7 +36,6 @@ public class TestCase3 {
 		  { System.out.println("Text Failed"); }
 		 
 
-	    driver.close();
-
+		  driver.quit();
 }
 }

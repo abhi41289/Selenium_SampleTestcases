@@ -28,16 +28,17 @@ public class TestCase5 {
 		    
 		    //place mobile order to cart 
 		    driver.findElement(By.xpath("//a[contains(text(),'Mobile')]")).click();
-		    driver.findElement(By.xpath("//li[2]//div[1]//div[3]//button[1]//span[1]//span[1]")).click();	    
+		    driver.findElement(By.xpath("//*[contains(@onclick,\"product/2\")]")).click();    
 		    //driver.findElement(By.xpath("//input[@name='cart[100104]'")).sendKeys("10");
 		    
 		    //update order
 		    //driver.findElement(By.xpath("//td[@class='product-cart-actions']//button[@name='update_cart_action']//span//span[contains(text(),'Update')]")).click();
-		    driver.findElement(By.xpath("//li[@class='method-checkout-cart-methods-onepage-bottom']//button[@class='button btn-proceed-checkout btn-checkout']//span//span[contains(text(),'Proceed to Checkout')]")).click();
+		    driver.findElement(By.xpath("//ul[@class='checkout-types top']//li//button[@class='button btn-proceed-checkout btn-checkout']//span//span[contains(text(),'Proceed to Checkout')]")).click();
+		    //driver.findElement(By.xpath("//*[@class="button btn-proceed-checkout btn-checkout" and @xpath =1]")).click();
 		    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		    
 		 //checkout
-		    driver.findElement(By.xpath("//div[@id='billing-buttons-container']//button[@class='button']//span//span[contains(text(),'Continue')]")).click();	
+		    driver.findElement(By.xpath("//*[contains(@onclick,\"billing.save\")]")).click();	
 		 /* driver.findElement(By.id("billing:firstname")).sendKeys("Abhishek");
 		 * driver.findElement(By.id("billing:lastname")).sendKeys("Raj");
 		 * driver.findElement(By.id("billing:street1")).sendKeys("White House");
@@ -55,21 +56,23 @@ public class TestCase5 {
 		    
 		    
 			//Shipping method
-			driver.findElement(By.xpath("//div[@id='shipping-method-buttons-container']//button[@class='button']//span//span[contains(text(),'Continue')]")).click();
+			driver.findElement(By.xpath("//*[contains(@onclick,'shippingMethod')]")).click();
 			
 			//payment information
 			List<WebElement> oRadioButton = driver.findElements(By.name("payment[method]"));
 			 
 			 oRadioButton.get(1).click();
-			 driver.findElement(By.xpath("//div[@id='payment-buttons-container']//button[@class='button']")).click(); 
+			 //driver.findElement(By.xpath("//*[contains(@onclick,'checkmo')]")).click(); 
 			 
 			//order review
-			 driver.findElement(By.xpath("//span[contains(text(),'Place Order')]")).click();
+			 driver.findElement(By.xpath("//*[contains(@onclick,\"payment.save\")]")).click();
 		
-			 
+			 //place order
+			 driver.findElement(By.xpath("//*[contains(@title,\"Place Order\")]")).click();
+				
 		    
 		    //test validation
-		    String actual_name= driver.findElement(By.xpath("//h1[contains(text(),'Your order has been received.')] ")).getText();
+		    String actual_name= driver.findElement(By.xpath("//*[contains(text(),'Your order has been received.')] ")).getText();
 		    System.out.println(actual_name);
 		    if(actual_name.contains("YOUR ORDER HAS BEEN RECEIVED."))
 				  

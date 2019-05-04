@@ -18,11 +18,11 @@ public class TestCase2 {
 
 	    driver.get("http://live.guru99.com/");
 	    driver.manage().window().maximize();
-	    int randNum = (int) (Math.random() * 100);
+	    int randNum = (int) (Math.random() * 1000);
 	    
 	    //Create a new account
 	    driver.findElement(By.xpath("//div[@class='footer']//a[contains(text(),'My Account')]")).click();
-	    driver.findElement(By.xpath("//span[contains(text(),'Create an Account')]")).click();
+	    driver.findElement(By.xpath("//*[@title=\"Create an Account\"]")).click();
 	    
 	    //Register new member
 	    driver.findElement(By.id("firstname")).sendKeys("Test"+randNum);
@@ -37,7 +37,7 @@ public class TestCase2 {
 	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	   
 	    //Testcase validation
-	    String actual_name= driver.findElement(By.xpath("//span[contains(text(),'Thank you for registering with Main Website Store.')] ")).getText();
+	    String actual_name= driver.findElement(By.xpath("//*[@class=\"success-msg\"]")).getText();
 	    //System.out.println(actual_name);
 	    
 		
